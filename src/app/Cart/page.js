@@ -21,7 +21,7 @@ const Keranjang = () => {
 
       }, 2000)
     }else{
-      await fetch('https://porto-backend-silk.vercel.app/posted', {
+      await fetch('https://porto-backend-silk.vercel.app/order', {
         method: "POST", 
         headers: {"Content-Type": "application/json",}, 
         body: JSON.stringify({data:cart, nama})
