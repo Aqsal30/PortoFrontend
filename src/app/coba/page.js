@@ -1,6 +1,6 @@
 'use client'
 
-import useCartStore from "../../../server/middleware/Carting";
+import useCartStore from "../../../component/Carting";
 
 const Coba = () => {
     const cart = useCartStore(
