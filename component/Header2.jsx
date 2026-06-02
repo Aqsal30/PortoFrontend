@@ -6,13 +6,23 @@ const Header2 = ({data}) => {
   const [scrollY, setScrollY] = useState(0);
   const [minimum, setminimum] = useState(false)
   useEffect(() => {
+    let ticking = false;
+  
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+      
+        ticking = true;
+      }
     };
-
+  
     window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+  
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Initial and minimum values
@@ -39,12 +49,12 @@ const Header2 = ({data}) => {
   }
   return (
       <div
-        className="sticky top-0 z-50 bg-white shadow transition-[height]"
+        className="sticky top-0 z-50 bg-white shadow transition-all duration-200"
         style={{
           height: `${currentHeight}px`,
         }}
       >
-        <div className={`h-full flex ${scrollY >= 100 ? "flex-row" : "flex-col"} text-black items-center justify-center`}>
+        <div className={`h-full flex ${scrollY >= 100 ? "flex-row" : "flex-col"} transition-all duration-200 text-black items-center justify-center`}>
           {scrollY >= 100 ?
           <Coffee />
           :
