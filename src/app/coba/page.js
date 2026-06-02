@@ -49,14 +49,6 @@ const Coba = (data) => {
           }
           <input ref={isRef} className='input w-full' placeholder='Cari Apa...' onClick={() => setIsClick(true)} onChange={(e) => setcari(e.target.value)}/>
         </div>
-        <div className='absolute bg-black/90 h-screen w-full' onClick={()=>setIsClick(false)}>
-          {data.filter((inputs) => {return (cari !=='' && inputs.nama_menu.toLowerCase().includes(cari.toLowerCase()))}).map((data) =>(
-            <div className='w-full h-20 bg-white flex' key={data.menu_id}>
-            <p className='text-black bg-red-600'>{data.nama_menu}</p>
-            <button className='btn text-black justify-end'>pesan</button>
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className="p-6 space-y-4 text-black">
