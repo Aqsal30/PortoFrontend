@@ -4,7 +4,7 @@ import { ShoppingCart, Search, Expand } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-const Navbar = ({data}) => {
+const Header = ({data}) => {
     const [isClick, setIsClick] = useState(false)
     const [cari, setcari] = useState('')
     const isRef = useRef(null)
@@ -64,4 +64,4 @@ const Navbar = ({data}) => {
 
     </div> 
 )}
-export default Navbar
+export default Header

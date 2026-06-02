@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "../../component/navbar";
+import Navbar from "../../component/Header";
+import Navbar2 from "../../component/navbar2";
 const data = await fetch("https://porto-backend-silk.vercel.app/menu")
 const posts = await data.json()
 const geistSans = Geist({
@@ -25,8 +26,8 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body >
-        <Navbar data={posts}/>
         {children}
+        <Navbar2/>
       </body>
     </html>
   );

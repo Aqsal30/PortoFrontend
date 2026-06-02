@@ -2,9 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Coffee } from 'lucide-react';
 
-const Coba = (data) => {
+const Header2 = ({data}) => {
   const [scrollY, setScrollY] = useState(0);
-
+  const [minimum, setminimum] = useState(false)
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -20,10 +20,10 @@ const Coba = (data) => {
   const minHeight = 60;
 
   // Shrink by 0.5px for every 1px scroll
-  const currentHeight = Math.max(
-    minHeight,
-    maxHeight - scrollY
-  );
+  const currentHeight = minimum
+  ? minHeight
+  :
+  Math.max(minHeight,  maxHeight - scrollY);
   const [isClick, setIsClick] = useState(false)
   const [cari, setcari] = useState('')
   const isRef = useRef(null)
@@ -33,8 +33,11 @@ const Coba = (data) => {
       setcari('')
     }
   }, [isClick]);
+  const handler = (data) =>{
+    setIsClick(!isClick)
+    setScrollY(data)
+  }
   return (
-    <div>
       <div
         className="sticky top-0 z-50 bg-white shadow transition-[height]"
         style={{
@@ -47,9 +50,10 @@ const Coba = (data) => {
           :
           <p>bab8afkafjhaksfahsfkafhkfahfshk</p>
           }
-          <input ref={isRef} className='input w-full' placeholder='Cari Apa...' onClick={() => setIsClick(true)} onChange={(e) => setcari(e.target.value)}/>
+          <input ref={isRef} className='input w-full' placeholder='Cari Apa...' onClick={()=>handler(100)} onChange={(e) => setcari(e.target.value)}/>
         </div>
-        <div className='absolute bg-black/90 h-screen w-full' onClick={()=>setIsClick(false)}>
+        {isClick &&
+        <div className='absolute bg-black/90 h-screen w-full' onClick={()=>handler(0)}>
           {data.filter((inputs) => {return (cari !=='' && inputs.nama_menu.toLowerCase().includes(cari.toLowerCase()))}).map((data) =>(
             <div className='w-full h-20 bg-white flex' key={data.menu_id}>
             <p className='text-black bg-red-600'>{data.nama_menu}</p>
@@ -57,21 +61,8 @@ const Coba = (data) => {
             </div>
           ))}
         </div>
+        }
       </div>
-
-      <div className="p-6 space-y-4 text-black">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="h-32 rounded bg-gray-200"
-          >
-            Item {i + 1}  
-            {scrollY}
-
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
-export default Coba
+export default Header2

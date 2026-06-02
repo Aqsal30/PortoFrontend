@@ -60,7 +60,7 @@ const Carding = ({data}) => {
                 alt="Shoes" />
               <p>{data.nama_menu}</p>
               <p>{data.deskripsi}</p>
-              <input className='input w-15' type='number' value={total} onChange={(e) => setTotal(e.total.value)}></input>
+              <input className='input w-15' type='number' value={total} onChange={(e) => setTotal(e.target.value)}></input>
               <button className='btn h-7' onClick={()=> setTotal(Number(total + 1))}>+</button>
               <button className='btn h-7' onClick={() => setTotal(Number(total - 1))}>-</button>
                   <div className="modal-action">
