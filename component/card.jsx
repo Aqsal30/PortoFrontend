@@ -31,11 +31,9 @@ const Carding = ({data}) => {
     return(
         <div className="bg-red-500 m-auto">
           <div className="card bg-base-100 w-40 shadow-sm">
-            <button onClick={()=>document.getElementById('display').showModal()}>
               <img
                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
                 alt="Shoes" />
-            </button>
             <div className="card-body flex flex-row bg-blue-500" >
               <p className="card-title text-[10px]">{data.nama_menu}</p>
               <div className="card-actions justify-end">
