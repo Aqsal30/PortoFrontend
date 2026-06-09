@@ -1,15 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {Outfit} from "next/font/google";
 import "./globals.css";
 import Navbar from "../../component/navbar";
-const data = await fetch("https://porto-backend-silk.vercel.app/menu")
-const posts = await data.json()
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
@@ -22,9 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${outfit.variable}h-full antialiased`}
     >
-      <body >
+      <body>
         {children}
         <Navbar/>
       </body>
