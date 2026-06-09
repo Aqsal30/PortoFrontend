@@ -7,7 +7,7 @@ const Home = async() => {
   const data = await fetch("https://porto-backend-silk.vercel.app/menu")
   const posts = await data.json()
   return(
-    <div className="bg-[url('/bg.png')] bg-cover bg-center h-full">
+    <div className="bg-white h-full">
       <Header data={posts}/>
       <Carouselbut data={posts}/>
       <ListMenu data={posts}/>
