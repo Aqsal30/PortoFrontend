@@ -27,20 +27,20 @@ const Carding = ({data}) => {
     }
 
     return(
-        <div className="mt-3 text-black">
+        <div className="mt-3 text-white">
           <div className="card items-center">
             <img
               src="/image/americano.png"
               alt="Shoes"
               className='w-35 h-30 object-cover rounded-t-md aspect-square'/>
-            <div className="w-35 h-20 flex flex-col border-1 bg-gray-200 shadow-2xl border rounded-b-md" >
+            <div className="w-35 h-20 flex flex-col border-1 bg-primer shadow-2xl border rounded-b-md" >
               <div className='w-full h-12 flex flex-col '>
               <p className="text-[12px] font-sans font-semibold ml-2">{data.nama_menu}</p>
               <p className="text-[10px] font-sans font-semibold ml-2">{data.deskripsi_singkat}</p>
               </div>
               <div className='w-full h-8 flex flex-row rounded-b-md justify-between items-center'>
               <p className="text-[12px] ml-2">{data.harga}</p>
-              <button className="btn w-5 h-5 mr-2 bg-blue-600" onClick={()=>Pesan(data)}> + </button>
+              <button className="btn size-5 mr-2 bg-tersier flex justify-center items-center" onClick={()=>Pesan(data)}> + </button>
               </div>
             </div>
           </div>

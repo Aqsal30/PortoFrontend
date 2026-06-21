@@ -4,32 +4,51 @@ import Link from "next/link";
 import {Hamburger, ShoppingCart, ScrollText} from 'lucide-react';
 import useCartStore from "./Carting";
 import { usePathname } from "next/navigation";
-const Navbar2 = () => {
+const Navbar = () => {
     const cart = useCartStore((state) => state.cart);
     const totalQuantity = cart.reduce(
       (total, item) => total + item.quantity,
       0
     );
     const path = usePathname()
-    const activeClass = (route) => {
+    const Inner = (route) => {
     return path === route
-      ? "bg-biru text-white"
-      : "bg-gray-200 border-0 text-biru";
+      ? "bg-sekunder text-white"
+      : "bg-transparent text-biru";
+    };
+    const Logo = (route) => {
+      return path === route &&
+      "translate-y-[-10px] rounded-full bg-tersier" 
+      
     };
     return(
-        <div className="h-14 w-full bg-white rounded-t-4xl border-1 border-blue-600 flex justify-around fixed bottom-0 items-center">
-          <Link href={'/'} className={`btn flex flex-col justify-end size-13 ${activeClass("/")}`}><Hamburger size={20}/>Menu</Link>
-          <Link href={'/Cart'} className={`btn flex flex-col justify-end size-13 ${activeClass("/Cart")}`}>
-            <div className='indicator'>
-                <span className="indicator-item rounded-full w-3 badge badge-secondary">{totalQuantity}</span>
-                <ShoppingCart size={20}/>
-            </div>
-            Cart
-          </Link>
-          <Link href={'/Order'} className={`btn flex flex-col justify-end size-13 ${activeClass("/Order")}`}><ScrollText size={20}/>Order</Link>
-        </div>
+      <>
+        <div className="fixed bottom-0 w-full bg-white h-20 flex justify-center rounded-t-xl">
+          <div className="h-16 w-[90%] bg-primer rounded-xl flex items-center justify-around">
+            <Link href={'/'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/")}`}>
+              <div className={`flex justify-center items-center size-9 ${Logo("/")}`}><Hamburger size={24}/></div>
+              <p className="text-[12px]">Menu</p>
+            </Link>
 
+            <Link href={'/Cart'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/Cart")}`}>
+              <div className={`flex justify-center items-center size-9 ${Logo("/Cart")}`}>
+                  <div className="indicator">
+                    <span className="indicator-item rounded-full w-3 badge">{totalQuantity}</span>
+                    <ShoppingCart size={24}/>
+                  </div>
+              </div>
+              <p className="text-[12px]">Cart</p>
+            </Link>
+            
+            <Link href={'/Order'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/Order")}`}>
+              <div className={`flex justify-center items-center size-9 ${Logo("/Order")}`}><ScrollText size={24}/></div>
+              <p className="text-[12px]">Order</p>
+            </Link>
+          
+          </div>
+        </div>
+      </>
     )
 }
 
-export default Navbar2;
+export default Navbar;

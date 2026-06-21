@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import useCartStore from "../../../component/Carting";
-
+import { ArrowLeft } from "lucide-react";
 const Keranjang = () => {
   const [nama,setNama] = useState('')
   const [alert, setAlert] = useState(false)
@@ -31,6 +31,10 @@ const Keranjang = () => {
   console.log(cart)
   return (
     <div className="bg-[url('/bg.png')] bg-cover bg-center w-full h-full flex flex-col items-center">
+      <div className="w-full sticky top-0 h-10 bg-primer flex items-center">
+        <button><ArrowLeft /></button>
+        <p>Cart</p>
+      </div>
       <input type="text" placeholder="Masukkan Nama Pemesan" className="input mt-5 mb-3 w-[80%] rounded-xl" value={nama} onChange={(e)=>setNama(e.target.value)} />
       <div className="w-[80%] text-base-100 ring-2 ring-black shadow-xl/40 border-black rounded-xl mb-50">
         {cart.map((item) => (
@@ -38,7 +42,7 @@ const Keranjang = () => {
             <div className="card card-side shadow-xl">
               <div className="card-body flex-row">
                 <div className="bg-green-200 w-[70%]">
-                  <></>
+                  <p>{item.id}</p>
                 </div>  
                 <div className="bg-blue-200 w-[30%] card-actions justify-end">
                   <div className="w-20 h-20 bg-red-400 justify-end">
@@ -60,7 +64,7 @@ const Keranjang = () => {
         ))}  
       </div>
       {cart.length != 0 ?
-      <div className="toast toast-center w-full">
+      <div className="toast bottom-15 toast-center w-full">
         <button className="btn w-full" onClick={handler}> checkout </button>
       </div>
       :

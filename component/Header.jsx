@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
-import { Coffee } from 'lucide-react';
+import { Coffee, Search } from 'lucide-react';
 
 const Header2 = ({data}) => {
   const [scrollY, setScrollY] = useState(0);
@@ -50,7 +50,7 @@ const Header2 = ({data}) => {
       <div className="sticky top-0 z-10 w-full"
       style={{ height: `200px`, transform: `translateY(-${fakeheight}px)`}}
       >
-        <div className={`h-full bg-white flex text-black 
+        <div className={`h-full bg-base flex text-black 
           ${shrinking 
           ? 
           "flex-row items-end justify-center" 
@@ -63,9 +63,12 @@ const Header2 = ({data}) => {
             <Coffee />
           </div>
           :
-          <p>bab8afkafjhaksfahsfkafhkfahfshk</p>
+          <p>Selamat Datang</p>
           }
-          <input ref={isRef} className='input w-full' placeholder="cari apa...." value={cari} onClick={()=>{if(!shrink){setshrink(true)}}} onChange={(e) => setcari(e.target.value)}/>
+          <label className="input bg-tersier text-black font-bold w-full">
+            <Search size={15}/>
+            <input type="search" required ref={isRef} placeholder="cari menu disini..." value={cari} onClick={()=>{if(!shrink){setshrink(true)}}} onChange={(e) => setcari(e.target.value)}/>
+          </label>
         </div>
         {shrink &&
         <div className='absolute bg-black/90 h-screen w-full' onClick={()=>setshrink(false)}>
