@@ -21,10 +21,15 @@ const Navbar = () => {
       "translate-y-[-10px] rounded-full bg-tersier" 
       
     };
+    const handler = () => {
+      console.log(cart)
+    }
     return(
-      <>
-        <div className="fixed bottom-0 w-full bg-white h-20 flex justify-center rounded-t-xl">
-          <div className="h-16 w-[90%] bg-primer rounded-xl flex items-center justify-around">
+      <div className="fixed bottom-0 w-full bg-white h-20 flex justify-center rounded-t-xl">
+        {path === "/Cart" ?
+        <div className="btn bg-sekunder w-full h-10">Checkout</div>
+        :
+        <div className="h-16 w-[90%] bg-primer rounded-xl flex items-center justify-around">
             <Link href={'/'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/")}`}>
               <div className={`flex justify-center items-center size-9 ${Logo("/")}`}><Hamburger size={24}/></div>
               <p className="text-[12px]">Menu</p>
@@ -44,10 +49,12 @@ const Navbar = () => {
               <div className={`flex justify-center items-center size-9 ${Logo("/Order")}`}><ScrollText size={24}/></div>
               <p className="text-[12px]">Order</p>
             </Link>
-          
           </div>
-        </div>
-      </>
+         
+          
+        }
+
+      </div>
     )
 }
 

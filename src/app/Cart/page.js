@@ -9,10 +9,11 @@ const Keranjang = () => {
   const cart = useCartStore(
     (state) => state.cart
   );
-
+  
   const removeFromCart = useCartStore(
     (state) => state.removeFromCart
   );
+
   const handler = async() => {
     if (!nama){
       setAlert(true)
@@ -28,14 +29,14 @@ const Keranjang = () => {
       });
     }
     };
-  console.log(cart)
+
   return (
     <div className="bg-[url('/bg.png')] bg-cover bg-center w-full h-full flex flex-col items-center">
-      <div className="w-full sticky top-0 h-10 bg-primer flex items-center">
+      <div className="w-full sticky top-0 h-10 bg-primer z-10 flex items-center">
         <button><ArrowLeft /></button>
         <p>Cart</p>
       </div>
-      <input type="text" placeholder="Masukkan Nama Pemesan" className="input mt-5 mb-3 w-[80%] rounded-xl" value={nama} onChange={(e)=>setNama(e.target.value)} />
+      <input type="text" placeholder="Masukkan Nama Pemesan" className="input mt-5 mb-3 w-[80%] rounded-xl" onChange={(e)=>setNama(e.target.value)} />
       <div className="w-[80%] text-base-100 ring-2 ring-black shadow-xl/40 border-black rounded-xl mb-50">
         {cart.map((item) => (
           <div key={item.id}>
@@ -61,17 +62,10 @@ const Keranjang = () => {
               </div>
             </div>
           </div>
-        ))}  
+        ))} 
       </div>
-      {cart.length != 0 ?
-      <div className="toast bottom-15 toast-center w-full">
-        <button className="btn w-full" onClick={handler}> checkout </button>
-      </div>
-      :
-      <div className="toast toast-center w-full">
-        <button className="btn w-full bg-base-100" disabled onClick={handler}> checkout </button>
-      </div>
-      }
+      <div className="bg-sekunder w-full h-30 fixed bottom-20"></div> 
+      
       {alert && 
       <div className="toast toast-start toast-middle">
         <div className="alert alert-info">
