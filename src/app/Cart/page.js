@@ -3,6 +3,7 @@
 import { useState } from "react";
 import useCartStore from "../../../component/Carting";
 import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 const Keranjang = () => {
   const [nama,setNama] = useState('')
   const [alert, setAlert] = useState(false)
@@ -33,7 +34,7 @@ const Keranjang = () => {
   return (
     <div className="bg-[url('/bg.png')] bg-cover bg-center w-full h-full flex flex-col items-center">
       <div className="w-full sticky top-0 h-10 bg-primer z-10 flex items-center">
-        <button><ArrowLeft /></button>
+        <Link href={"/"}><ArrowLeft /></Link>
         <p>Cart</p>
       </div>
       <input type="text" placeholder="Masukkan Nama Pemesan" className="input mt-5 mb-3 w-[80%] rounded-xl" onChange={(e)=>setNama(e.target.value)} />

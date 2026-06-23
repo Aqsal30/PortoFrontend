@@ -4,7 +4,8 @@ import Link from "next/link";
 import {Hamburger, ShoppingCart, ScrollText} from 'lucide-react';
 import useCartStore from "./Carting";
 import { usePathname } from "next/navigation";
-const Navbar = () => {
+
+const BottomNavbar = () => {
     const cart = useCartStore((state) => state.cart);
     const totalQuantity = cart.reduce(
       (total, item) => total + item.quantity,
@@ -21,9 +22,7 @@ const Navbar = () => {
       "translate-y-[-10px] rounded-full bg-tersier" 
       
     };
-    const handler = () => {
-      console.log(cart)
-    }
+
     return(
       <div className="fixed bottom-0 w-full bg-white h-20 flex justify-center rounded-t-xl">
         {path === "/Cart" ?
@@ -49,13 +48,11 @@ const Navbar = () => {
               <div className={`flex justify-center items-center size-9 ${Logo("/Order")}`}><ScrollText size={24}/></div>
               <p className="text-[12px]">Order</p>
             </Link>
-          </div>
-         
-          
+          </div>      
         }
 
       </div>
     )
 }
 
-export default Navbar;
+export default BottomNavbar;
