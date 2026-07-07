@@ -8,7 +8,7 @@ const ListMenu = ({data}) => {
   const filteredPosts = data.filter(
     item => item.jenis === category
   )
-  console.log(category)
+  
     return(
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
         {filteredPosts.map((item) =>(

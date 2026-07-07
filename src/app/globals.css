@@ -9,10 +9,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primer: #3B2416;
-  --color-sekunder: #6F4E37;
-  --color-tersier: #D4A373;
-  --color-base: #F8F6F3;
+  --color-primer: #2563EB;
+  --color-sekunder: #6EE7B7;
+  --color-tersier: #ECFDF5;
+  --color-back: #F8F6F3;
   /* default font */
   --font-sans: var(--font-outfit), sans-serif;
 
