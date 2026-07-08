@@ -22,11 +22,25 @@ const BottomNavbar = () => {
       "translate-y-[-10px] rounded-full bg-tersier" 
       
     };
-
+    const handler = async() => {
+      if (!nama){
+        setAlert(true)
+        setTimeout(()=>{
+          setAlert(false);
+        
+        }, 2000)
+      }else{
+        await fetch(`${api}/order`, {
+          method: "POST", 
+          headers: {"Content-Type": "application/json",}, 
+          body: JSON.stringify({data:cart, nama})
+        });
+      }
+      };
     return(
       <div className="fixed bottom-0 w-full bg-white h-20 flex justify-center rounded-t-xl">
         {path === "/Cart" ?
-        <div className="btn bg-sekunder w-full h-10">Checkout</div>
+        <div className="btn bg-primer w-full h-10">Checkout</div>
         :
         <div className="h-16 w-[90%] bg-primer rounded-xl flex items-center justify-around">
             <Link href={'/'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/")}`}>

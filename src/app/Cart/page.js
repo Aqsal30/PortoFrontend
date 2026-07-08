@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import useCartStore from "../../../component/Carting";
-import { ArrowLeft, Plus, Minus } from "lucide-react";
+import { ArrowLeft, Plus, Minus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { formatPrice } from "../utils/FormatPrice";
 const api = process.env.BASE_API
@@ -19,21 +19,7 @@ const Keranjang = () => {
   const removeFromCart = useCartStore(
     (state) => state.removeFromCart
   );
-  const handler = async() => {
-    if (!nama){
-      setAlert(true)
-      setTimeout(()=>{
-        setAlert(false);
 
-      }, 2000)
-    }else{
-      await fetch(`${api}/order`, {
-        method: "POST", 
-        headers: {"Content-Type": "application/json",}, 
-        body: JSON.stringify({data:cart, nama})
-      });
-    }
-    };
 
   return (
     <div className="bg-back w-full h-full flex flex-col items-center">
@@ -51,6 +37,7 @@ const Keranjang = () => {
               </div>
 
               <div className='w-[65%] pt-2 flex flex-col'>
+                <button className="absolute right-2 btn btn-square size-8" onClick={()=>removeFromCart(item.id)}><Trash2/></button>
                 <div className="w-full h-[70%] flex flex-col">
                   <p className='font-bold text-red-400'>{item.name}</p>
                   <p className="text-gray">Espresso description</p>
@@ -78,7 +65,7 @@ const Keranjang = () => {
       <div className="bg-back w-full text-black rounded-t-xl border-2 border-primer h-30 fixed bottom-20">
         <div className="dropdown w-full">
           <div tabIndex={0} role="button" className="btn w-[95%] rounded-full border-2 border-primer text-primer bg-back">nama meja</div>
-          <ul tabIndex="-1" className="dropdown-content menu bg-sekunder rounded-box z-1 w-52 p-2 shadow-sm">
+          <ul tabIndex="-1" className="dropdown-content menu bg-primer rounded-box z-1 w-52 p-2 shadow-sm">
             <li><a>Item 1</a></li>
             <li><a>Item 2</a></li>
           </ul>
