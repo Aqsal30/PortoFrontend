@@ -1,11 +1,19 @@
-const api = process.env.NEXT_PUBLIC_BASE_API;
+"use client"
 
-const coba = async() => {
-  const data = await fetch(`${api}/menu`)
-  const posts = await data.json()
-  console.log(posts)
+const coba = () => {
   return(
-    <h3 className="text-black">asafjkasfhakfh</h3>
+    <div className="flex flex-col bg-primer w-full min-h-dvh">
+      <div className="w-full h-60 bg-red-400">
+        <img src="/image/americano.png" className="w-full h-full object-contain"/>
+        
+      </div>
+      <div className="flex-2 bg-blue-400">
+
+      </div>
+      <div className="flex-1 bg-green-400">
+
+      </div>
+    </div>
   )
 }
 
