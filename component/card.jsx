@@ -6,20 +6,18 @@ import { useRef, useState } from 'react';
 import { formatPrice } from '@/app/utils/FormatPrice';
 import Modal from './modal';
 const Carding = ({data}) => {
-    const [select, setSelect] = useState(null);
-    const [total, setTotal] = useState(1)
     const [alert, setAlert] = useState(false)
     const modalref = useRef(null);
-    const Open = useRef(null)
+    const id = crypto.randomUUID()
     const cart = useCartStore(
       (state) => state.addToCart
     )
-    
-
-    const Pesan = (data) => {
-      cart({id:data.menu_id, name:data.nama_menu, quantity:total, harga:data.harga})
-      console.log(data)
-      setAlert(true);
+    const Pesan = (event, data) => {
+      cart({id:id, menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, option:{
+        cup:"regular", ice:"regular", sugar:"regular"
+      }, note:""})
+      event.stopPropagation()
+      setAlert(true); 
 
       setTimeout(()=>{
         setAlert(false);
@@ -41,7 +39,7 @@ const Carding = ({data}) => {
               </div>
               <div className='w-full h-8 flex flex-row rounded-b-md justify-between items-center'>
                 <p className="text-[12px] font ml-2">Rp {formatPrice(data.harga)}</p>
-                <button className="btn size-5 mr-2 bg-primer text-back flex justify-center items-center" onClick={()=>Pesan(data)}> + </button>
+                <button className="btn size-5 mr-2 bg-primer text-back flex justify-center items-center" onClick={(e)=>Pesan(e,data)}> + </button>
               </div>
             </div>
           </div>
@@ -57,6 +55,7 @@ const Carding = ({data}) => {
             
           }
           </div>   
+          
     )
 }
 export default Carding;

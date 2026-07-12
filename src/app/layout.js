@@ -15,7 +15,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      data-theme="light"
       lang="en"
       className={`${outfit.variable}h-full antialiased`}
     >

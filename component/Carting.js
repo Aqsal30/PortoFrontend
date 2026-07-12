@@ -5,7 +5,7 @@ const useCartStore = create(
   persist(
     (set) => ({
       cart: [],
-
+      order: [],
       addToCart: (item) =>
         set((state) => {
           const existingItem = state.cart.find(
@@ -22,7 +22,7 @@ const useCartStore = create(
                         cartItem.quantity + item.quantity,
                     }
                   : cartItem
-              ),
+              )
             };
           }
 
@@ -42,6 +42,49 @@ const useCartStore = create(
             (item) => item.id !== id
           ),
         })),
+
+      increaseQuantity: (id) =>
+        set((state) => ({
+          cart: state.cart.map((cartItem) =>
+          cartItem.id === id 
+          ?{
+            ...cartItem,
+            quantity: cartItem.quantity + 1,
+          } 
+          : cartItem
+          ),
+        })),
+        
+      decreaseQuantity: (id) =>
+        set((state) => ({
+          cart: state.cart.map((cartItem) =>
+          cartItem.id === id 
+          ?{
+            ...cartItem,
+            quantity: cartItem.quantity - 1,
+          } 
+          : cartItem
+          ).filter((cartItem) => cartItem.quantity > 0)
+        })),
+        
+      clearCart: () => set((state) => ({
+        cart: []
+      })),
+
+      savedOrder: (OrderId) => 
+        set((state) => ({
+          order: [
+            ...state.order,
+            {
+              OrderId,
+              Tanggal: new Date().toLocaleString("id-ID"),
+            }
+          ]
+        })),
+
+      clearOrder: () => set((state) => ({
+        order: []
+      }))
     }),
     {
       name: "cart-storage",
