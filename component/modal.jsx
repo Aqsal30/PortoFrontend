@@ -100,9 +100,9 @@ const modal = ({ref, data}) => {
               </div>
               <div className="flex-1 flex justify-between items-end">
                 <div className="w-[35%] h-10 bg-white text-primer font-bold rounded-full flex items-center justify-between">
-                  <button className="btn btn-circle size-9">-</button>
+                  <button className="btn btn-circle size-9 text-3xl" onClick={()=> setQty((e)=>Math.max(1, e - 1))}>-</button>
                   <p>{qty}</p>
-                  <button className="btn btn-circle size-9">+</button>
+                  <button className="btn btn-circle size-9" onClick={()=> setQty((e)=>e+1)}>+</button>
                 </div>
                 <button className="btn w-[50%] h-10 rounded-full" onClick={() => Order(data)}>Add to cart</button>
               </div>

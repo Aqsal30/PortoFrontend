@@ -6,11 +6,13 @@ import { ArrowLeft, Plus, Minus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { formatPrice } from "../utils/FormatPrice";
 import { useRouter } from "next/navigation";
+import Loadingpage from "../../../component/Loadingpage";
 const api = process.env.NEXT_PUBLIC_BASE_API;
 
 const Keranjang = () => {
   const [nama,setNama] = useState('')
   const [alert, setAlert] = useState(false)
+  const [loading, setLoading] = useState(false)
   const router = useRouter();
   const cart = useCartStore(
     (state) => state.cart
@@ -42,18 +44,24 @@ const Keranjang = () => {
         
         }, 2000)
       }else{
-      const res = await fetch(`${api}/order/orderpost`, {
-          method: "POST", 
-          headers: {"Content-Type": "application/json",}, 
-          body: JSON.stringify({data:cart, nama})
-          
-        });
-        if(res.ok) {
+        try{
+          setLoading(true)
+          const res = await fetch(`${api}/order/orderpost`, {
+            method: "POST", 
+            headers: {"Content-Type": "application/json",}, 
+            body: JSON.stringify({data:cart, nama})
+
+          });
           const data = await res.json()
           savedOrder(data.orderId)
           clearCart()
+
+          router.push("/")
+        }catch(error){
+          alert(error.message)
+        }finally{
+          setLoading(false)
         }
-        router.push("/")
       }
     
   };
@@ -64,6 +72,7 @@ const Keranjang = () => {
 
   return (
     <div className="bg-back w-full h-full flex flex-col items-center">
+      {loading && <Loadingpage/>}
       <div className="w-full sticky top-0 h-10 bg-primer z-10 flex items-center">
         <Link href={"/"}><ArrowLeft /></Link>
         <p>Cart</p>
