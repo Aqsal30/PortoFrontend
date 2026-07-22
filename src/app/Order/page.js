@@ -1,20 +1,45 @@
 'use client'
+import { useEffect, useRef, useState } from "react"
 import useCartStore from "../../../component/Carting"
-
+import Modal from "../../../component/ModalComponent"
+import HistoryCard from "../../../component/HistoryCard"
+import Loadingskeleton from "../../../component/Loadingskeleton"
 const api = process.env.NEXT_PUBLIC_BASE_API
 const Order = () =>{
-    //const data = await fetch(`${api}/order`)
-    //const posts = await data.json()
-    //console.log(posts)    
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
     const cart = useCartStore((state)=>state.order)
+    const modalref = useRef(null)
     const clearorder = useCartStore(
     (state) => state.clearOrder
     )
-    const iD = cart.map((item)=> item.OrderId)
-    console.log(iD)
+    const OrderIds = cart.map((item)=> item.OrderId)
+    useEffect(() => {
+        async function history() {
+            setLoading(true)
+            const res = await fetch(`${api}/order/history`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json",}, 
+                body: JSON.stringify({OrderIds})
+            })
+            const posts = await res.json()
+            setData(posts)
+            setLoading(false)
+        }
+        history()
+    }, [OrderIds]);
     return(
-        <div className="bg-white w-full h-screen">
-            <button className="btn bg-primer" onClick={()=>clearorder()}></button>
+        <div className="bg-white w-full min-h-dvh">
+            <div className="w-full h-10 sticky top-0 bg-primer">Header</div>
+            {loading && <Loadingskeleton/>}
+            <div className="w-full h-full flex flex-col justify-center items-center mt-2">
+                {data.map((res)=>{
+                    return(
+                        <HistoryCard key={res.order_id} data={res}/>
+                    )
+                })}
+            </div>
+            <div className="h-20 w-full"></div>
         </div>
     )
 }

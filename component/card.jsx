@@ -4,7 +4,7 @@ import { ShoppingCart } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { formatPrice } from '@/app/utils/FormatPrice';
-import Modal from './modal';
+import Modal from './ModalCart';
 const Carding = ({data}) => {
     const [alert, setAlert] = useState(false)
     const modalref = useRef(null);

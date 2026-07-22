@@ -28,7 +28,7 @@ const BottomNavbar = () => {
       <div className="fixed bottom-0 w-full bg-white h-20 flex justify-center rounded-t-xl">
         {path != "/Cart" &&
         <div className="h-16 w-[90%] bg-primer rounded-xl flex items-center justify-around">
-            <Link href={'/'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/")}`}>
+            <Link href={'/'} prefetch={false} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/")}`}>
               <div className={`flex justify-center items-center size-9 ${Logo("/")}`}><Hamburger size={24}/></div>
               <p className="text-[12px]">Menu</p>
             </Link>

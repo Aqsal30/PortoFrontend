@@ -65,7 +65,7 @@ const Header2 = ({data}) => {
           :
           <p>Selamat Datang</p>
           }
-          <label className="input bg-tersier text-black font-bold w-full">
+          <label className="input bg-primer text-black font-bold w-full">
             <Search size={15}/>
             <input type="search" required ref={isRef} placeholder="cari menu disini..." value={cari} onClick={()=>{if(!shrink){setshrink(true)}}} onChange={(e) => setcari(e.target.value)}/>
           </label>

@@ -74,7 +74,7 @@ const Keranjang = () => {
     <div className="bg-back w-full h-full flex flex-col items-center">
       {loading && <Loadingpage/>}
       <div className="w-full sticky top-0 h-10 bg-primer z-10 flex items-center">
-        <Link href={"/"}><ArrowLeft /></Link>
+        <Link href={"/"} prefetch={false}><ArrowLeft /></Link>
         <p>Cart</p>
       </div>
       <div className="w-full text-primer mb-50">
