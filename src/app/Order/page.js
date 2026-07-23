@@ -30,7 +30,11 @@ const Order = () =>{
     }, [OrderIds]);
     return(
         <div className="bg-white w-full min-h-dvh">
-            <div className="w-full h-10 sticky top-0 bg-primer">Header</div>
+            <div className="w-full h-10 sticky top-0 bg-primer flex items-center">
+                <p className="ml-4 font-bold">
+                    Order History
+                </p>
+            </div>
             {loading && <Loadingskeleton/>}
             <div className="w-full h-full flex flex-col justify-center items-center mt-2">
                 {data.map((res)=>{

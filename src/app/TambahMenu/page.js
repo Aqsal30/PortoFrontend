@@ -1,187 +1,76 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { ArrowLeft, Check } from "lucide-react"
+import Loadingpage from "../../../component/Loadingpage"
+import Loadingskeleton from "../../../component/Loadingskeleton"
+import { useEffect, useRef, useState } from "react"
+import Modal from "../../../component/ModalComponent"
 
-export default function CreateMenuPage() {
+const api = process.env.NEXT_PUBLIC_BASE_API;
+const coba = () => {
+  const [menus, setMenus] = useState([])
+  const [select, setSelect] = useState()
+  const [file, setFile] = useState(null);
+  useEffect(()=>{
+      async function menu() {
+        try{
+          const data = await fetch(`${api}/menu`);
+          const posts = await data.json();
+          setMenus(posts)
+        }catch(err){
+          console.log(err)
+        }
+      }
+      menu()
+    },[])
 
-  const [form, setForm] = useState({
-    name: "",
-    price: "",
-    description: "",
-    type: "food"
-  });
 
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
+  const handler = async() => {
 
-  const handleChange = (e) => {
+    if (!select) {
+        alert("Select a menu");
+        return;
+    }
 
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-
-  };
-
-  const handleImage = (e) => {
-
-    const file = e.target.files[0];
-    console.log(e.target);
-    console.log(e.target.files);
-
-    if (!file) return;
-
-    setImage(file);
-
-    setPreview(
-      URL.createObjectURL(file)
-    );
-
-  };
-
-  const handleSubmit = async (e) => {
-
-    e.preventDefault();
+    if (!file) {
+        alert("Select an image");
+        return;
+    }
 
     const formData = new FormData();
 
-    formData.append(
-      "name",
-      form.name
-    );
-
-    formData.append(
-      "price",
-      form.price
-    );
-
-    formData.append(
-      "description",
-      form.description
-    );
-
-    formData.append(
-      "type",
-      form.type
-    );
-
-    if (image) {
-      formData.append(
-        "image",
-        image
-      );
-    }
+    formData.append("menu_id", select);
+    formData.append("image", file);
 
     try {
 
-      const response = await fetch(
-        "https://porto-backend-silk.vercel.app/updatemenu",
-        {
-          method: "POST",
-          body: formData
-        }
-      );
+        const res = await fetch(`${api}/menu/image`, {
+            method: "PUT",
+            body: formData
+        });
 
-      const data =
-        await response.json();
+        const data = await res.json();
 
-      console.log(data);
+        console.log(data);
 
-      alert("Menu created");
+    } catch (err) {
 
-    } catch (error) {
-
-      console.log(error);
-
-      alert("Failed");
+        console.log(err);
 
     }
-
-  };
-
-  return (
-
-    <div style={{
-      padding:"30px",
-      maxWidth:"500px"
-    }}>
-
-      <h1>Create Menu</h1>
-
-      <form onSubmit={handleSubmit}>
-
-        <input
-          name="name"
-          placeholder="Menu name"
-          value={form.name}
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <input
-          name="price"
-          type="number"
-          placeholder="Price"
-          value={form.price}
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={form.description}
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <select
-          name="type"
-          value={form.type}
-          onChange={handleChange}
-        >
-          <option value="food">
-            Food
-          </option>
-
-          <option value="drink">
-            Drink
-          </option>
-        </select>
-
-        <br /><br />
-
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImage}
-        />
-
-        <br /><br />
-
-        {preview && (
-
-          <img
-            src={preview}
-            alt="preview"
-            width={200}
-          />
-
-        )}
-
-        <br /><br />
-
-        <button type="submit">
-          Save Menu
-        </button>
-
-      </form>
-
-    </div>
-
-  );
-
 }
+  return(
+    <div className="bg-primer w-full min-h-dvh">
+      <select value={select} onChange={(e)=>setSelect(e.target.value)}>
+        <option value="">Menu</option>
+        {menus.map((res)=>(
+          <option className="text-black" key={res.menu_id}value={res.menu_id}>{res.nama_menu}</option>
+        ))}
+      </select>
+      <input type="file" onChange={(e)=>setFile(e.target.files[0])}/>
+      <button onClick={handler} className="btn">submit</button>
+    </div> 
+  )
+}
+
+export default coba

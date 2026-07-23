@@ -11,12 +11,16 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   useEffect(()=>{
     async function menu() {
-      setLoading(true)
-      const data = await fetch(`${api}/menu`);
-      const posts = await data.json();
-      
-      setMenus(posts)
-      setLoading(false)
+      try{
+        setLoading(true)
+        const data = await fetch(`${api}/menu`);
+        const posts = await data.json();
+        setMenus(posts)
+      }catch(err){
+        alert(err.message)
+      }finally{
+        setLoading(false)
+      }
     }
     menu()
   },[])

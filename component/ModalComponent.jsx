@@ -51,33 +51,34 @@ const Modal = ({data, open, close}) => {
         
         <div className="h-[60px] flex rounded-t-xl">  
           <div className='flex-1 flex items-center'>
-            <button className="btn btn-circle size-10 text-black bg-transparent border-1 border-black ml-2 mr-4" onClick={handleClose}><ArrowLeft/></button>
+            <button className="btn btn-circle size-10 text-back bg-transparent border-1 border-sekunder shadow-xl ml-2 mr-4" onClick={handleClose}><ArrowLeft/></button>
             <p>Order #{data.order_id}</p>
           </div>
-          <div className='flex-1 flex flex-col items-end mr-2'>
+          <div className='flex-1 flex flex-col justify-center items-end mr-2'>
             <p>Tanggal Pemesanan</p>
             <p>{data.Created_at}</p>
           </div>
         </div>
 
-        <div ref={scrollRef} onScroll={handleScroll} className="relative max-h-[50vh] bg-red-300 flex flex-col items-center overflow-auto">
+        <div ref={scrollRef} onScroll={handleScroll} className="relative max-h-[50vh] bg-back flex flex-col items-center overflow-auto">
         {data.detail.map((res)=>(
           
-          <div key={res.nama_menu} className='w-full flex flex-col bg-green-900 border-b-2 border-black'>
-            <p>{res.nama_menu}</p>
+          <div key={res.nama_menu} className='w-full flex flex-col text-black border-b-2 border-primer'>
+            <p className='font-bold text-primer'>{res.nama_menu}</p>
             <p>Cup size: {res.option.cup}</p>
             <p>Ice Level: {res.option.ice}</p>
             <p>Sugar Level: {res.option.sugar}</p>
-            <p className='self-end'>Total Harga #harga</p>
+            <p className='self-end font-bold text-primer'>Total Harga #harga</p>
           </div>
         ))}
         </div>
-        <div className="h-[60px] relative bg-green-300">
+        <div className="h-[60px] relative bg-back border-t-primer border-2">
           {canScroll && !hasScrolled &&(
             <div className='absolute bottom-full left-1/2 -translate-x-1/2 flex justify-center items-center animate-bounce size-8 rounded-full border-1 border-white'>
-              <ArrowDown size={30}/>
+              <ArrowDown size={35}/>
             </div>        
           )}
+          <p className='text-black'>Total: {data.total}</p>
         </div>
         
       </div>

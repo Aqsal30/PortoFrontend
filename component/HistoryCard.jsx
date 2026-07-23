@@ -1,7 +1,7 @@
 "use client"
 
 import { formatPrice } from "@/app/utils/FormatPrice"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, Check, Clock } from "lucide-react"
 import { useRef, useState } from "react"
 import Modal from "./ModalComponent"
 
@@ -12,10 +12,21 @@ const HistoryCard = ({data}) => {
     <div className="w-[90%] h-40 bg-primer border-2 border-black flex flex-col px-1 py-1 mb-2 rounded-xl"  onClick={()=>setopen(true)}>
       <div className="flex-1 flex justify-between">
         <div className="flex items-center">
-          <div className="size-4 bg-green-500">
-            <Check size={15}/>
-          </div>
-          <p>{data.status}</p>
+          {data.status === "Pending" ?    
+          <>
+            <div className="size-5 bg-orange-500">
+            <Clock size={20}/>
+            </div>
+            <p>{data.status}</p>
+          </>
+          :
+          <>
+            <div className="size-5 bg-green-500">
+            <Check size={20}/>
+            </div>
+            <p>{data.status}</p>
+          </>
+          }
         </div>
         <p>Rp.{formatPrice(data.total)}</p>
       </div>

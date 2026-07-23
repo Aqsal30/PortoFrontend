@@ -71,7 +71,7 @@ const Keranjang = () => {
   }
 
   return (
-    <div className="bg-back w-full h-full flex flex-col items-center">
+    <div className="bg-back w-full min-h-dvh flex flex-col items-center">
       {loading && <Loadingpage/>}
       <div className="w-full sticky top-0 h-10 bg-primer z-10 flex items-center">
         <Link href={"/"} prefetch={false}><ArrowLeft /></Link>
@@ -88,7 +88,7 @@ const Keranjang = () => {
               </div>
 
               <div className='w-[65%] pt-2 flex flex-col'>
-                <button className="absolute right-2 btn btn-square size-8 rounded-md" onClick={()=>removeFromCart(item.id)}><Trash2/></button>
+                <button className="absolute right-2 btn btn-square bg-sekunder text-primer border-primer size-8 rounded-md" onClick={()=>removeFromCart(item.id)}><Trash2/></button>
                 <div className="w-full h-[70%] flex flex-col">
                   <p className='font-bold text-black'>{item.name}</p>
                   <p className="text-gray">Espresso description</p>
@@ -96,8 +96,8 @@ const Keranjang = () => {
                 
                 <div className="w-full h-[30%] flex flex-row justify-between items-center">
                   <div className='w-30 h-9 bg-tersier border-2 border-back rounded-full flex justify-between items-center text-back'>
-                    <div className='btn btn-circle bg-back size-6 ml-1' onClick={() => decreaseQuantity(item.id)}>
-                     <Minus color="#000" strokeWidth={3}/>
+                    <div className='btn btn-circle bg-back text-sekunder size-6 ml-1' onClick={() => decreaseQuantity(item.id)}>
+                     <Minus strokeWidth={3}/>
                     </div>
                     <p className="text-black font-bold">{item.quantity}</p>
                     <div className='btn btn-circle bg-back size-6 mr-1' onClick={() => increaseQuantity(item.id)}>
