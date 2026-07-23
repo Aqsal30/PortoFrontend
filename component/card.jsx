@@ -37,7 +37,6 @@ const Carding = ({data, index}) => {
               height={140}
               sizes='140px'
               priority={index === 0}
-              fetchPriority='high'
               className='object-cover size-35 rounded-t-md border-2 border-b-0 border-primer'/>
             <div className="w-35 h-20 flex border-2 border-primer flex-col bg-back shadow-2xl rounded-b-md " >
               <div className='w-full h-12 flex flex-col '>

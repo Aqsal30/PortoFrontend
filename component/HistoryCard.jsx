@@ -2,7 +2,7 @@
 
 import { formatPrice } from "@/app/utils/FormatPrice"
 import { ArrowRight, Check, Clock } from "lucide-react"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import Modal from "./ModalComponent"
 
 const HistoryCard = ({data}) => {

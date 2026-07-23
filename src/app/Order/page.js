@@ -9,10 +9,6 @@ const Order = () =>{
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const cart = useCartStore((state)=>state.order)
-    const modalref = useRef(null)
-    const clearorder = useCartStore(
-    (state) => state.clearOrder
-    )
     const OrderIds = cart.map((item)=> item.OrderId)
     useEffect(() => {
         async function history() {

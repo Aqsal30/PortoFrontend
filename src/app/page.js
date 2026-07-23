@@ -1,33 +1,15 @@
-'use client'
-import { useEffect, useState } from "react";
-import Carding from "../../component/card"
 import Carouselbut from "../../component/carousel-button"
 import Header from "../../component/Header"
 import ListMenu from "../../component/ListMenu"
 import Loadingskeleton from "../../component/Loadingskeleton";
 const api = process.env.NEXT_PUBLIC_BASE_API;
-const Home = () => {
-  const [menus, setMenus] = useState([])
-  const [loading, setLoading] = useState(false)
-  useEffect(()=>{
-    async function menu() {
-      try{
-        setLoading(true)
-        const data = await fetch(`${api}/menu`);
-        const posts = await data.json();
-        setMenus(posts)
-      }catch(err){
-        alert(err.message)
-      }finally{
-        setLoading(false)
-      }
-    }
-    menu()
-  },[])
+
+export default async function Home(){
+    const data = await fetch(`${api}/menu`);
+    const menus = await data.json();
   
   return(
     <div className="bg-back min-h-dvh">
-      {loading && <Loadingskeleton/>}
       <Header data={menus}/>
       <Carouselbut data={menus}/>
       <ListMenu data={menus}/>
@@ -35,4 +17,3 @@ const Home = () => {
     </div>
   )
 }
-export default Home

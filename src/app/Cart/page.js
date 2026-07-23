@@ -77,8 +77,6 @@ const Keranjang = () => {
       <div className="w-full text-primer mb-50">
         {cart.map((item) => (
           <div key={item.id}>
-            {console.log(item)}
-            
             <div className='w-full h-40 bg-back flex flex-row justify-center border-b-2 border-primer'>
               
               <div className='w-[30%] flex justify-center items-center m-2'>
