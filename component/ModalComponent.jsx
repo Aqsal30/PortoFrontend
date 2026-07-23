@@ -1,6 +1,5 @@
 'use client'
-import Link from 'next/link';
-import {ArrowDown, ArrowLeft, ArrowUp} from 'lucide-react';
+import {ArrowDown, ArrowLeft} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 const Modal = ({data, open, close}) => {
   const scrollRef = useRef(null);
