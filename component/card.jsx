@@ -14,7 +14,7 @@ const Carding = ({data, index}) => {
     )
     const Pesan = (event, data) => {
       const id = crypto.randomUUID()
-      cart({id:id, menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, option:{
+      cart({id:id, menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, img:data.img_url, option:{
         cup:"regular", ice:"regular", sugar:"regular"
       }, note:""})
       event.stopPropagation()
@@ -37,6 +37,7 @@ const Carding = ({data, index}) => {
               height={140}
               sizes='140px'
               priority={index === 0}
+              fetchPriority='high'
               className='object-cover size-35 rounded-t-md border-2 border-b-0 border-primer'/>
             <div className="w-35 h-20 flex border-2 border-primer flex-col bg-back shadow-2xl rounded-b-md " >
               <div className='w-full h-12 flex flex-col '>
@@ -45,7 +46,7 @@ const Carding = ({data, index}) => {
               </div>
               <div className='w-full h-8 flex flex-row rounded-b-md justify-between items-center'>
                 <p className="text-[12px] text-primer font-bold font ml-2">Rp {formatPrice(data.harga)}</p>
-                <button className="btn btn-square size-5 mr-2 bg-primer text-white border-sekunder flex justify-center items-center" onClick={(e)=>Pesan(e,data)}> <Plus/> </button>
+                <button id='AddItem' aria-label='AddItem' className="btn btn-square size-5 mr-2 bg-primer text-white border-sekunder flex justify-center items-center" onClick={(e)=>Pesan(e,data)}> <Plus/> </button>
               </div>
             </div>
           </div>

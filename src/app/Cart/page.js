@@ -66,9 +66,6 @@ const Keranjang = () => {
     
   };
 
-  const handle = () => {
-    console.log(cart)
-  }
 
   return (
     <div className="bg-back w-full min-h-dvh flex flex-col items-center">
@@ -80,11 +77,12 @@ const Keranjang = () => {
       <div className="w-full text-primer mb-50">
         {cart.map((item) => (
           <div key={item.id}>
+            {console.log(item)}
             
             <div className='w-full h-40 bg-back flex flex-row justify-center border-b-2 border-primer'>
               
               <div className='w-[30%] flex justify-center items-center m-2'>
-                <img className='size-25 rounded-3xl' src='/image/latte.png' alt='Coffee' />
+                <img className='size-25 rounded-3xl aspect-square object-cover' src={item.img} alt='Coffee' />
               </div>
 
               <div className='w-[65%] pt-2 flex flex-col'>

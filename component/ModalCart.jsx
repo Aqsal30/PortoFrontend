@@ -20,7 +20,7 @@ const modal = ({ref, data}) => {
     )
     const Order = (data) => {
       const id = crypto.randomUUID();
-      cart({id:id, menu_id:data.menu_id, name:data.nama_menu, quantity:qty, harga:data.harga, option: {
+      cart({id:id, menu_id:data.menu_id, name:data.nama_menu, quantity:qty, harga:data.harga, img:data.img_url, option: {
         cup:cups, ice:ices, sugar:sugars}, note:notes}
       )
       ref.current.close()
