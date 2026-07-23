@@ -36,7 +36,7 @@ const BottomNavbar = () => {
             <Link href={'/Cart'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/Cart")}`}>
               <div className={`flex justify-center items-center size-9 ${Logo("/Cart")}`}>
                   <div className="indicator">
-                    <span className="indicator-item rounded-full w-3 badge">{totalQuantity}</span>
+                    <span className="indicator-item bg-sekunder border-0 rounded-full w-3 badge">{totalQuantity}</span>
                     <ShoppingCart size={24}/>
                   </div>
               </div>

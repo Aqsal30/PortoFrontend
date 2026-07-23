@@ -1,4 +1,3 @@
-"use client"
 import Carding from "./card"
 import useMenuStore from "./carousel"
 const ListMenu = ({data}) => {

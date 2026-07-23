@@ -27,12 +27,12 @@ const Carding = ({data}) => {
     }
 
     return(
-        <div className=" mt-3 text-black">
+      <>
+        <div className="mt-3 text-black">
           <div className="card items-center" onClick={() => modalref.current.showModal(data)}>
             <Image
               src={data.img_url}
               alt="food"
-              loading='eager'
               width={140}
               height={140}
               className='object-cover rounded-t-md aspect-square border-2 border-b-0 border-primer'/>
@@ -42,13 +42,14 @@ const Carding = ({data}) => {
                 <p className="text-[10px] font-sans font-semibold ml-2">{data.deskripsi_singkat}</p>
               </div>
               <div className='w-full h-8 flex flex-row rounded-b-md justify-between items-center'>
-                <p className="text-[12px] font ml-2">Rp {formatPrice(data.harga)}</p>
-                <button className="btn btn-square size-5 mr-2 bg-primer text-sekunder border-sekunder flex justify-center items-center" onClick={(e)=>Pesan(e,data)}> <Plus/> </button>
+                <p className="text-[12px] text-primer font-bold font ml-2">Rp {formatPrice(data.harga)}</p>
+                <button className="btn btn-square size-5 mr-2 bg-primer text-white border-sekunder flex justify-center items-center" onClick={(e)=>Pesan(e,data)}> <Plus/> </button>
               </div>
             </div>
           </div>
 
-          <Modal data={data} ref={modalref} />
+
+          </div>   
 
           {alert && 
             <div className="toast toast-top toast-center w-full absolute z-10">
@@ -58,7 +59,8 @@ const Carding = ({data}) => {
             </div>
             
           }
-          </div>   
+          <Modal data={data} ref={modalref} />
+        </>
           
     )
 }
