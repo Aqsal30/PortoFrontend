@@ -9,11 +9,11 @@ import Image from 'next/image';
 const Carding = ({data}) => {
     const [alert, setAlert] = useState(false)
     const modalref = useRef(null);
-    const id = crypto.randomUUID()
     const cart = useCartStore(
       (state) => state.addToCart
     )
     const Pesan = (event, data) => {
+      const id = crypto.randomUUID()
       cart({id:id, menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, option:{
         cup:"regular", ice:"regular", sugar:"regular"
       }, note:""})

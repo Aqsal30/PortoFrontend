@@ -1,4 +1,3 @@
-'use client'
 import useMenuStore from "./carousel"
 const Carouselbut = ({data}) => {
   const { category, setCategory } =
