@@ -10,8 +10,8 @@ const ListMenu = ({data}) => {
   
     return(
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-        {filteredPosts.map((item) =>(
-            <Carding key={item.menu_id} data={item}/>
+        {filteredPosts.map((item, index) =>(
+            <Carding key={item.menu_id} data={item} index={index}/>
         ))
         }
       </div>

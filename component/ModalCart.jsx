@@ -30,7 +30,7 @@ const modal = ({ref, data}) => {
       <dialog ref={ref} className="modal">
         <div className="w-full min-h-dvh flex flex-col bg-back mb-50 text-black">
           <div className='w-full h-60 bg-white'>
-            <img src="/image/americano.png" className="w-full h-full object-contain"/>
+            <img src={data.img_url} className="w-full h-full object-contain"/>
             <form method="dialog">
               <button className="btn btn-circle size-10 text-white bg-primer border-1 border-sekunder absolute top-2 left-2"><ArrowLeft/></button>
             </form>

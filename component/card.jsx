@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import { formatPrice } from '@/app/utils/FormatPrice';
 import Modal from './ModalCart';
 import Image from 'next/image';
-const Carding = ({data}) => {
+const Carding = ({data, index}) => {
     const [alert, setAlert] = useState(false)
     const modalref = useRef(null);
     const cart = useCartStore(
@@ -35,7 +35,9 @@ const Carding = ({data}) => {
               alt="food"
               width={140}
               height={140}
-              className='object-cover rounded-t-md aspect-square border-2 border-b-0 border-primer'/>
+              sizes='140px'
+              priority={index === 0}
+              className='object-cover size-35 rounded-t-md border-2 border-b-0 border-primer'/>
             <div className="w-35 h-20 flex border-2 border-primer flex-col bg-back shadow-2xl rounded-b-md " >
               <div className='w-full h-12 flex flex-col '>
                 <p className="text-[12px] font-sans font-bold ml-2">{data.nama_menu}</p>
