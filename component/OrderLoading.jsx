@@ -1,4 +1,4 @@
-export default function Loadingpage() {
+export default function OrderLoading() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
       <div className="rounded-xl bg-white p-6 shadow-lg">

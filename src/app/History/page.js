@@ -2,15 +2,15 @@
 import { useEffect,useState } from "react"
 import useCartStore from "../../../component/CartStorage"
 import HistoryCard from "../../../component/HistoryCard"
-import LoadingPage from "../../../component/LoadingPage"
+import LoadingComponent from "../../../component/LoadingComponent"
 const api = process.env.NEXT_PUBLIC_BASE_API
-const Order = () =>{
+const History = () =>{
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const cart = useCartStore((state)=>state.order)
     const OrderIds = cart.map((item)=> item.OrderId)
     useEffect(() => {
-        async function history() {
+        async function OrderHistory() {
             setLoading(true)
             const res = await fetch(`${api}/order/history`, {
                 method: "POST",
@@ -21,7 +21,7 @@ const Order = () =>{
             setData(posts)
             setLoading(false)
         }
-        history()
+        OrderHistory()
     }, [OrderIds]);
     return(
         <div className="bg-white w-full min-h-dvh">
@@ -30,7 +30,7 @@ const Order = () =>{
                     Order History
                 </p>
             </div>
-            {loading && <LoadingPage/>}
+            {loading && <LoadingComponent/>}
             <div className="w-full h-full flex flex-col justify-center items-center mt-2">
                 {data.map((res)=>(
                         <HistoryCard key={res.order_id} data={res}/>
@@ -40,4 +40,4 @@ const Order = () =>{
         </div>
     )
 }
-export default Order;
+export default History;
