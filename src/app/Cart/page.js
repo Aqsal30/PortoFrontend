@@ -7,6 +7,7 @@ import Link from "next/link";
 import { formatPrice } from "../utils/FormatPrice";
 import { useRouter } from "next/navigation";
 import Loadingpage from "../../../component/OrderLoading";
+import Image from "next/image";
 const api = process.env.NEXT_PUBLIC_BASE_API;
 
 const Keranjang = () => {
@@ -77,18 +78,23 @@ const Keranjang = () => {
       <div className="w-full text-primer mb-50">
         {cart.map((item) => (
           <div key={item.id}>
-            {console.log(item)}
             <div className='w-full h-40 bg-back flex flex-row justify-center border-b-2 border-primer'>
               
               <div className='w-[30%] flex justify-center items-center m-2'>
-                <img className='size-25 rounded-3xl aspect-square object-cover' src={item.img} alt='Coffee' />
+                <Image
+                 src={item.img} 
+                 height={100}
+                 width={100}
+                 sizes="100px"
+                 className='size-25 rounded-3xl aspect-square object-cover'
+                 alt='Coffee' />
               </div>
 
               <div className='w-[65%] pt-2 flex flex-col'>
                 <button className="absolute right-2 btn btn-square bg-sekunder text-primer border-primer size-8 rounded-md" onClick={()=>removeFromCart(item.id)}><Trash2/></button>
                 <div className="w-full h-[70%] flex flex-col">
                   <p className='font-bold text-black'>{item.name}</p>
-                  <p className="text-gray">Espresso description</p>
+                  <p className="text-gray">{item.desc}</p>
                 </div>
                 
                 <div className="w-full h-[30%] flex flex-row justify-between items-center">
