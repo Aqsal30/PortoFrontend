@@ -9,17 +9,18 @@ const useCartStore = create(
       addToCart: (item) =>
         set((state) => {
           const existingItem = state.cart.find(
-            (cartItem) => cartItem.id === item.id
+            (cartItem) => 
+              cartItem.menu_id === item.menu_id &&
+              JSON.stringify(cartItem.option) === JSON.stringify(item.option)
           );
 
           if (existingItem) {
             return {
               cart: state.cart.map((cartItem) =>
-                cartItem.id === item.id
+                cartItem.id === existingItem.id
                   ? {
                       ...cartItem,
-                      quantity:
-                        cartItem.quantity + item.quantity,
+                      quantity: cartItem.quantity + item.quantity,
                     }
                   : cartItem
               )
@@ -31,6 +32,7 @@ const useCartStore = create(
               ...state.cart,
               {
                 ...item,
+                id : crypto.randomUUID()
               },
             ],
           };

@@ -12,8 +12,7 @@ const DisplayCard = ({data, index}) => {
       (state) => state.addToCart
     )
     const Pesan = (event, data) => {
-      const id = crypto.randomUUID()
-      cart({id:id, menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, img:data.img_url, option:{
+      cart({menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, img:data.img_url, option:{
         cup:"regular", ice:"regular", sugar:"regular"
       }, note:""})
       event.stopPropagation()
