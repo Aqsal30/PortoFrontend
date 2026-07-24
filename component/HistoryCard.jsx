@@ -3,10 +3,11 @@
 import { formatPrice } from "@/app/utils/FormatPrice"
 import { ArrowRight, Check, Clock } from "lucide-react"
 import { useState } from "react"
-import Modal from "./ModalComponent"
+import HistoryModal from "./HistoryModal"
 
 const HistoryCard = ({data}) => {
   const [open, setopen] = useState(false)
+  console.log(data)
   return(
     <>
     <div className="w-[90%] h-40 bg-primer border-2 border-black flex flex-col px-1 py-1 mb-2 rounded-xl"  onClick={()=>setopen(true)}>
@@ -46,7 +47,7 @@ const HistoryCard = ({data}) => {
         <ArrowRight />
       </div>
     </div>
-    <Modal data={data} open={open} close={()=>setopen(false)}/>
+    <HistoryModal data={data} open={open} close={()=>setopen(false)}/>
     </>
 
     

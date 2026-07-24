@@ -1,6 +1,6 @@
 "use client";
-import useMenuStore from "./carousel"
-const Carouselbut = ({data}) => {
+import useMenuStore from "./CategoryCarousel"
+const ButtonCarousel = ({data}) => {
   const { category, setCategory } =
     useMenuStore()
   const categories = [...new Set((data ?? []).map(item => item.jenis))]
@@ -12,4 +12,4 @@ const Carouselbut = ({data}) => {
       </div>
       )
 }
-export default Carouselbut
+export default ButtonCarousel

@@ -3,8 +3,8 @@
 import { formatPrice } from "@/app/utils/FormatPrice"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
 import { useState } from "react"
-import useModalStore from './Carting';
-const modal = ({ref, data}) => {
+import useModalStore from './CartStorage';
+const OrderModal = ({ref, data}) => {
 
   const cup = ["Small", "Regular", "Large"]
   const ice = ["Less", "Regular", "More"]
@@ -113,4 +113,4 @@ const modal = ({ref, data}) => {
     )
 
 }
-export default modal
+export default OrderModal

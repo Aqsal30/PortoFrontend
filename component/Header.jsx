@@ -2,10 +2,12 @@
 import {useRef, useState } from "react";
 import {Search } from 'lucide-react';
 
-const Header2 = ({data}) => {
+const Header = ({data}) => {
   const [shrink, setshrink] = useState(false);
   const [cari, setcari] = useState('')
   const isRef = useRef(null)
+  const keyword = cari.toLowerCase()
+  const filteredMenu = data.filter(item =>keyword && item.nama_menu.toLowerCase().includes(keyword))
   return (
       <div className="sticky top-0 z-10 w-full bg-white h-[100px]">
         <div className="h-full bg-white flex text-black flex-col items-center justify-end"
@@ -18,15 +20,23 @@ const Header2 = ({data}) => {
         </div>
         {shrink &&
         <div className='absolute bg-black/90 h-screen w-full' onClick={()=>setshrink(false)}>
-          {data.filter((inputs) => {return (cari !=='' && inputs.nama_menu.toLowerCase().includes(cari.toLowerCase()))}).map((data) =>(
-            <div className='w-full h-20 bg-white flex' key={data.menu_id}>
-            <p className='text-black bg-red-600'>{data.nama_menu}</p>
-            <button className='btn text-black justify-end'>pesan</button>
-            </div>
-          ))}
+          {keyword == "" ? (
+          <p>Ketik Untuk Mencari Menu</p>
+          ): filteredMenu.length > 0 ?(
+          <>
+            {filteredMenu.map(item => (
+              <div className='w-full h-20 bg-white flex' key={item.menu_id}>
+              <p className='text-black bg-red-600'>{item.nama_menu}</p>
+              <button className='btn text-black justify-end'>pesan</button>
+              </div>
+            ))}
+          </>
+          ):(
+          <p> Menu Tidak Tersedia</p>)}
         </div>
         }
       </div>
+      
   );
 }
-export default Header2
+export default Header

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import useCartStore from "../../../component/Carting";
+import useCartStore from "../../../component/CartStorage";
 import { ArrowLeft, Plus, Minus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { formatPrice } from "../utils/FormatPrice";
 import { useRouter } from "next/navigation";
-import Loadingpage from "../../../component/Loadingpage";
+import Loadingpage from "../../../component/OrderLoading";
 const api = process.env.NEXT_PUBLIC_BASE_API;
 
 const Keranjang = () => {
@@ -77,6 +77,7 @@ const Keranjang = () => {
       <div className="w-full text-primer mb-50">
         {cart.map((item) => (
           <div key={item.id}>
+            {console.log(item)}
             <div className='w-full h-40 bg-back flex flex-row justify-center border-b-2 border-primer'>
               
               <div className='w-[30%] flex justify-center items-center m-2'>

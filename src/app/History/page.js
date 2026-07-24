@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from "react"
-import useCartStore from "../../../component/Carting"
-import Modal from "../../../component/ModalComponent"
+import useCartStore from "../../../component/CartStorage"
+import Modal from "../../../component/HistoryModal"
 import HistoryCard from "../../../component/HistoryCard"
-import Loadingskeleton from "../../../component/Loadingskeleton"
+import Loadingskeleton from "../../../component/LoadingPage"
 const api = process.env.NEXT_PUBLIC_BASE_API
 const Order = () =>{
     const [data, setData] = useState([])
@@ -33,11 +33,9 @@ const Order = () =>{
             </div>
             {loading && <Loadingskeleton/>}
             <div className="w-full h-full flex flex-col justify-center items-center mt-2">
-                {data.map((res)=>{
-                    return(
+                {data.map((res)=>(
                         <HistoryCard key={res.order_id} data={res}/>
-                    )
-                })}
+                ))}
             </div>
             <div className="h-20 w-full"></div>
         </div>

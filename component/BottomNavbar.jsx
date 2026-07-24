@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {Hamburger, ShoppingCart, ScrollText} from 'lucide-react';
-import useCartStore from "./Carting";
+import useCartStore from "./CartStorage";
 import { usePathname } from "next/navigation";
 
 const BottomNavbar = () => {
@@ -43,9 +43,9 @@ const BottomNavbar = () => {
               <p className="text-[12px]">Cart</p>
             </Link>
             
-            <Link href={'/Order'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/Order")}`}>
-              <div className={`flex justify-center items-center size-9 ${Logo("/Order")}`}><ScrollText size={24}/></div>
-              <p className="text-[12px]">Order</p>
+            <Link href={'/History'} className={`btn border-0 flex flex-col justify-center items-center size-13 gap-0 ${Inner("/History")}`}>
+              <div className={`flex justify-center items-center size-9 ${Logo("/History")}`}><ScrollText size={24}/></div>
+              <p className="text-[12px]">History</p>
             </Link>
           </div>      
         }

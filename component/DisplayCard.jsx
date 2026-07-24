@@ -1,12 +1,11 @@
 'use client'
-import useCartStore from './Carting';
-import { Plus, ShoppingCart } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import useCartStore from './CartStorage';
+import { Plus} from 'lucide-react';
 import { useRef, useState } from 'react';
 import { formatPrice } from '@/app/utils/FormatPrice';
-import Modal from './ModalCart';
+import OrderModal from './OrderModal';
 import Image from 'next/image';
-const Carding = ({data, index}) => {
+const DisplayCard = ({data, index}) => {
     const [alert, setAlert] = useState(false)
     const modalref = useRef(null);
     const cart = useCartStore(
@@ -61,9 +60,9 @@ const Carding = ({data, index}) => {
             </div>
             
           }
-          <Modal data={data} ref={modalref} />
+          <OrderModal data={data} ref={modalref} />
         </>
           
     )
 }
-export default Carding;
+export default DisplayCard;
