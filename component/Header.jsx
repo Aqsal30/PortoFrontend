@@ -1,7 +1,8 @@
 'use client'
 import {useRef, useState } from "react";
-import {Search } from 'lucide-react';
-
+import {Search,Plus} from 'lucide-react';
+import Image from "next/image";
+import { formatPrice } from "@/app/utils/FormatPrice";
 const Header = ({data}) => {
   const [shrink, setshrink] = useState(false);
   const [cari, setcari] = useState('')
@@ -9,7 +10,7 @@ const Header = ({data}) => {
   const keyword = cari.toLowerCase()
   const filteredMenu = data.filter(item =>keyword && item.nama_menu.toLowerCase().includes(keyword))
   return (
-      <div className="sticky top-0 z-10 w-full bg-white h-[100px]">
+      <div className="sticky top-0 z-10 w-full h-[100px]">
         <div className="h-full bg-white flex text-black flex-col items-center justify-end"
           >
           <p>Selamat Datang</p>
@@ -19,15 +20,30 @@ const Header = ({data}) => {
           </label>
         </div>
         {shrink &&
-        <div className='absolute bg-black/90 h-screen w-full' onClick={()=>setshrink(false)}>
+        <div className='absolute bg-white overflow-auto min-h-dvh w-full flex flex-col items-center' onClick={()=>setshrink(false)}>
           {keyword == "" ? (
-          <p>Ketik Untuk Mencari Menu</p>
+          <div className="w-full h-full flex items-center justify-center">
+            <p className="font-bold">Ketik Untuk Mencari Menu</p>
+          </div>
           ): filteredMenu.length > 0 ?(
           <>
             {filteredMenu.map(item => (
-              <div className='w-full h-20 bg-white flex' key={item.menu_id}>
-              <p className='text-black bg-red-600'>{item.nama_menu}</p>
-              <button className='btn text-black justify-end'>pesan</button>
+              <div className='w-[97%] h-40 border-b-2 border-primer flex' key={item.menu_id}>
+                <div className="flex-6 flex flex-col mt-2">
+                  <p className='text-black font-bold'>{item.nama_menu}</p>
+                  <p className='text-black'>{item.deskripsi_singkat}</p>
+                  <p className='mt-auto text-primer font-bold'>Rp {formatPrice(item.harga)}</p>
+                </div>
+                <div className="mt-2 flex-3 flex flex-col justify-center items-center">
+                <Image 
+                  src={item.img_url}
+                  alt="item"
+                  height={100}
+                  width={100}
+                  className="aspect-square size-25 rounded-xl object-cover"
+                />
+                <button className='btn bg-white w-23 z-10 -translate-y-2 rounded-full border-2 border-primer text-primer'>Tambah</button>
+                </div>
               </div>
             ))}
           </>

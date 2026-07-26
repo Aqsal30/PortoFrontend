@@ -76,7 +76,7 @@ const Keranjang = () => {
         <p>Cart</p>
       </div>
       <div className="w-full text-primer mb-50">
-        {cart.map((item) => (
+        {cart.map((item, index) => (
           <div key={item.id}>
             <div className='w-full h-40 bg-back flex flex-row justify-center border-b-2 border-primer'>
               
@@ -86,6 +86,7 @@ const Keranjang = () => {
                  height={100}
                  width={100}
                  sizes="100px"
+                 priority={index === 0}
                  className='size-25 rounded-3xl aspect-square object-cover'
                  alt='Coffee' />
               </div>

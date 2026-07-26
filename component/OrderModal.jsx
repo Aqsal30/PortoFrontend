@@ -37,8 +37,8 @@ const OrderModal = ({ref, data}) => {
           <div className='w-full flex-1 flex flex-col'>
               <div className='w-full flex-1 flex items-center'><p className='ml-2 font-bold'>{data.nama_menu}</p></div>
               <div className='w-full flex-1 flex justify-between items-center'>
-                <p className='ml-2'>{data.deskripsi_singkat}</p>
-                <p className='mr-2 font-bold text-primer'>Rp {formatPrice(data.harga)}</p>
+                <p className='ml-2 flex-7'>{data.deskripsi_lengkap}</p>
+                <p className='mr-2 flex-2 font-bold text-primer'>Rp {formatPrice(data.harga)}</p>
             </div>
 
             <div className="w-full flex-5 flex flex-col">  
