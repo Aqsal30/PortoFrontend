@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {Hamburger, ShoppingCart, ScrollText} from 'lucide-react';
-import useCartStore from "./CartStorage";
+import useCartStore from "../src/app/utils/CartStorage";
 import { usePathname } from "next/navigation";
 
 const BottomNavbar = () => {

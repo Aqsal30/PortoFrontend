@@ -3,7 +3,7 @@
 import { formatPrice } from "@/app/utils/FormatPrice"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
 import { useState } from "react"
-import useModalStore from './CartStorage';
+import useModalStore from '../src/app/utils/CartStorage';
 const OrderModal = ({ref, data}) => {
 
   const cup = ["Small", "Regular", "Large"]

@@ -1,5 +1,5 @@
 "use client";
-import useMenuStore from "./CategoryCarousel"
+import useMenuStore from "../src/app/utils/CategoryCarousel"
 const ButtonCarousel = ({data}) => {
   const { category, setCategory } =
     useMenuStore()

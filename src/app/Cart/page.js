@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import useCartStore from "../../../component/CartStorage";
+import useCartStore from "../utils/CartStorage";
 import { ArrowLeft, Plus, Minus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { formatPrice } from "../utils/FormatPrice";
@@ -59,7 +59,7 @@ const Keranjang = () => {
 
           router.push("/")
         }catch(error){
-          alert(error.message)
+          console.log(error)
         }finally{
           setLoading(false)
         }
@@ -78,7 +78,7 @@ const Keranjang = () => {
       <div className="w-full text-primer mb-50">
         {cart.map((item, index) => (
           <div key={item.id}>
-            <div className='w-full h-40 bg-back flex flex-row justify-center border-b-2 border-primer'>
+            <div className='w-full h-45 bg-back flex flex-row justify-center border-b-2 border-primer'>
               
               <div className='w-[30%] flex justify-center items-center m-2'>
                 <Image
@@ -87,7 +87,7 @@ const Keranjang = () => {
                  width={100}
                  sizes="100px"
                  priority={index === 0}
-                 className='size-25 rounded-3xl aspect-square object-cover'
+                 className='size-30 rounded-3xl aspect-square object-cover'
                  alt='Coffee' />
               </div>
 
@@ -96,6 +96,9 @@ const Keranjang = () => {
                 <div className="w-full h-[70%] flex flex-col">
                   <p className='font-bold text-black'>{item.name}</p>
                   <p className="text-gray">{item.desc}</p>
+                  <p className="text-gray">{item.option.cup}</p>
+                  <p className="text-gray">{item.option.ice}</p>
+                  <p className="text-gray">{item.option.sugar}</p>
                 </div>
                 
                 <div className="w-full h-[30%] flex flex-row justify-between items-center">

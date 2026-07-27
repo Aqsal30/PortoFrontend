@@ -1,6 +1,6 @@
 'use client'
 import { useEffect,useState } from "react"
-import useCartStore from "../../../component/CartStorage"
+import useCartStore from "../utils/CartStorage"
 import HistoryCard from "../../../component/HistoryCard"
 import LoadingComponent from "../../../component/LoadingComponent"
 const api = process.env.NEXT_PUBLIC_BASE_API
@@ -11,15 +11,20 @@ const History = () =>{
     const OrderIds = cart.map((item)=> item.OrderId)
     useEffect(() => {
         async function OrderHistory() {
-            setLoading(true)
-            const res = await fetch(`${api}/order/history`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json",}, 
-                body: JSON.stringify({OrderIds})
-            })
-            const posts = await res.json()
-            setData(posts)
-            setLoading(false)
+            try{
+                setLoading(true)
+                const res = await fetch(`${api}/order/history`, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json",}, 
+                    body: JSON.stringify({OrderIds})
+                })
+                const posts = await res.json()
+                setData(posts)
+            }catch(error){
+                console.log(error)
+            }finally{    
+                setLoading(false)
+            }
         }
         OrderHistory()
     }, [OrderIds]);

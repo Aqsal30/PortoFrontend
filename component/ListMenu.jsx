@@ -1,6 +1,6 @@
 "use client"
 import DisplayCard from "./DisplayCard"
-import useMenuStore from "./CategoryCarousel"
+import useMenuStore from "../src/app/utils/CategoryCarousel"
 const ListMenu = ({data}) => {
   const category =
     useMenuStore((state) => state.category)

@@ -1,5 +1,5 @@
 'use client'
-import useCartStore from './CartStorage';
+import useCartStore from '../src/app/utils/CartStorage';
 import { Plus} from 'lucide-react';
 import { useRef, useState } from 'react';
 import { formatPrice } from '@/app/utils/FormatPrice';
