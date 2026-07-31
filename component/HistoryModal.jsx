@@ -63,7 +63,7 @@ const HistoryModal = ({data, open, close}) => {
 
         <div ref={scrollRef} onScroll={handleScroll} className="relative max-h-[50vh] bg-back flex flex-col items-center overflow-auto">
         {data.detail.map((res)=>(
-          <div key={res.nama_menu} className='w-full flex text-black border-b-2 border-primer'>
+          <div key={res.nama_menu} className='w-full min-h-20 flex text-black border-b-2 border-primer'>
             <div className='flex-1 flex flex-col'>
               <p className='ml-2 font-bold text-primer'>{res.nama_menu}</p>
               {Object.values(res.option).map((data)=>(
