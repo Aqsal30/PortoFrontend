@@ -7,10 +7,9 @@ import HistoryModal from "./HistoryModal"
 
 const HistoryCard = ({data}) => {
   const [open, setopen] = useState(false)
-  console.log(data)
   return(
     <>
-    <div className="w-[90%] h-40 bg-primer border-2 border-black flex flex-col px-1 py-1 mb-2 rounded-xl"  onClick={()=>setopen(true)}>
+    <div className="w-[90%] font-bold h-40 bg-primer border-2 border-black flex flex-col px-1 py-1 mb-2 rounded-xl"  onClick={()=>setopen(true)}>
       <div className="flex-1 flex justify-between">
         <div className="flex items-center">
           {data.status === "Pending" ?    
@@ -36,7 +35,7 @@ const HistoryCard = ({data}) => {
       </div>
       <div className="flex-1 ">
         {data.detail.slice(0,2).map((res)=>(
-          <p>{res.nama_menu}</p>
+          <p key={res.nama_menu}>{res.nama_menu}</p>
         ))}
         {data.detail.length > 2 && 
         <p> {data.detail.length - 2} more items...</p>

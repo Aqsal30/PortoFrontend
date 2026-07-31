@@ -6,7 +6,7 @@ const api = process.env.NEXT_PUBLIC_BASE_API;
 export default async function Home(){
     const data = await fetch(`${api}/menu`);
     const menus = await data.json();
-  
+    
   return(
     <div className="bg-back min-h-dvh">
       <Header data={menus}/>

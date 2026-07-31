@@ -8,9 +8,9 @@ const History = () =>{
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const cart = useCartStore((state)=>state.order)
-    const OrderIds = cart.map((item)=> item.OrderId)
     useEffect(() => {
         async function OrderHistory() {
+            const OrderIds = cart.map((item)=> item.OrderId)
             try{
                 setLoading(true)
                 const res = await fetch(`${api}/order/history`, {
@@ -27,11 +27,11 @@ const History = () =>{
             }
         }
         OrderHistory()
-    }, [OrderIds]);
+    }, [cart]);
     return(
         <div className="bg-white w-full min-h-dvh">
-            <div className="w-full h-10 sticky top-0 bg-primer flex items-center">
-                <p className="ml-4 font-bold">
+            <div className="w-full h-10 sticky top-0 bg-primer flex justify-center items-center">
+                <p className="font-bold">
                     Order History
                 </p>
             </div>

@@ -12,9 +12,11 @@ const DisplayCard = ({data, index}) => {
       (state) => state.addToCart
     )
     const Pesan = (event, data) => {
-      cart({menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, img:data.img_url, option:{
-        cup:"regular", ice:"regular", sugar:"regular"
-      }, note:""})
+      const defaultoption = {}
+      data.option.forEach((item)=>{
+      defaultoption[item.option_id]={label:item.label,value:item.value[0]}
+      })
+      cart({menu_id:data.menu_id, desc:data.deskripsi_singkat, name:data.nama_menu, quantity:1, harga:data.harga, img:data.img_url, option:defaultoption, note:""})
       event.stopPropagation()
       setAlert(true); 
 
@@ -22,12 +24,12 @@ const DisplayCard = ({data, index}) => {
         setAlert(false);
 
       }, 2000)
+      console.log(defaultoption)
     }
-
     return(
       <>
         <div className="mt-3 text-black">
-          <div className="card items-center" onClick={() => modalref.current.showModal(data)}>
+          <div className="card items-center" onClick={() =>{modalref.current?.showModal()}}>
             <Image
               src={data.img_url}
               alt="food"
@@ -47,9 +49,7 @@ const DisplayCard = ({data, index}) => {
               </div>
             </div>
           </div>
-
-
-          </div>   
+        </div>   
 
           {alert && 
             <div className="toast toast-top toast-center w-full absolute z-10">
@@ -57,9 +57,10 @@ const DisplayCard = ({data, index}) => {
                 <span>Berhasil Ditambahkan</span>
               </div>
             </div>
-            
           }
-          <OrderModal data={data} ref={modalref} />
+          {data.option.length > 0 &&
+            <OrderModal data={data} ref={modalref} />
+          }
         </>
           
     )

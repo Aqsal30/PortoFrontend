@@ -51,8 +51,9 @@ const HistoryModal = ({data, open, close}) => {
         
         <div className="h-[60px] flex rounded-t-xl">  
           <div className='flex-1 flex items-center'>
-            <button className="btn btn-circle size-10 text-back bg-transparent border-1 border-sekunder shadow-xl ml-2 mr-4" onClick={handleClose}><ArrowLeft/></button>
+            <button className="btn btn-circle size-10 text-primer bg-white border-1 border-sekunder shadow-xl ml-2 mr-4" onClick={handleClose}><ArrowLeft/></button>
             <p>Order #{data.order_id}</p>
+            
           </div>
           <div className='flex-1 flex flex-col justify-center items-end mr-2'>
             <p>Tanggal Pemesanan</p>
@@ -62,15 +63,20 @@ const HistoryModal = ({data, open, close}) => {
 
         <div ref={scrollRef} onScroll={handleScroll} className="relative max-h-[50vh] bg-back flex flex-col items-center overflow-auto">
         {data.detail.map((res)=>(
-          <div key={res.nama_menu} className='w-full flex flex-col text-black border-b-2 border-primer'>
-            <div className='w-full flex justify-between'>
+          <div key={res.nama_menu} className='w-full flex text-black border-b-2 border-primer'>
+            <div className='flex-1 flex flex-col'>
               <p className='ml-2 font-bold text-primer'>{res.nama_menu}</p>
-              <p className='font-bold text-primer mr-2'>{res.quantity}</p>
+              {Object.values(res.option).map((data)=>(
+                <div className='flex ml-2'>
+                <p className='mr-2 font-bold text-primer'>{data.label}:</p>
+                <p>{data.value}</p>
+                </div>
+              ))}
             </div>
-            <p className='ml-2 font-semibold'>Cup size: {res.option.cup}</p>
-            <p className='ml-2 font-semibold'>Ice Level: {res.option.ice}</p>
-            <p className='ml-2 font-semibold'>Sugar Level: {res.option.sugar}</p>
-            <p className='self-end mr-2 font-bold text-primer'>Rp {formatPrice(res.harga)}</p>
+            <div className='flex-1 flex flex-col items-end justify-between'>
+              <p className='font-bold text-primer mr-2'>{res.quantity}</p>
+              <p className='self-end mr-2 font-bold text-primer'>Rp {formatPrice(res.harga)}</p>
+            </div>
           </div>
         ))}
         </div>

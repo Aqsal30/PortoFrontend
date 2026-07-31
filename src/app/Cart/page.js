@@ -15,6 +15,7 @@ const Keranjang = () => {
   const [alert, setAlert] = useState(false)
   const [loading, setLoading] = useState(false)
   const router = useRouter();
+  const [select, setSelect] = useState({})
   const cart = useCartStore(
     (state) => state.cart
   );
@@ -66,20 +67,17 @@ const Keranjang = () => {
       }
     
   };
-
-
   return (
     <div className="bg-back w-full min-h-dvh flex flex-col items-center">
       {loading && <Loadingpage/>}
-      <div className="w-full sticky top-0 h-10 bg-primer z-10 flex items-center">
-        <Link href={"/"} prefetch={false}><ArrowLeft /></Link>
-        <p>Cart</p>
+      <div className="w-full sticky top-0 h-15 bg-primer z-10 flex justify-center items-center relative">
+        <Link className="absolute left-3 btn btn-circle bg-white border-1 border-sekunder text-sekunder" href={"/"} prefetch={false}><ArrowLeft/></Link>
+        <p className="font-bold ">Cart</p>
       </div>
       <div className="w-full text-primer mb-50">
         {cart.map((item, index) => (
           <div key={item.id}>
-            <div className='w-full h-45 bg-back flex flex-row justify-center border-b-2 border-primer'>
-              
+            <div className='w-full min-h-45 bg-back flex flex-row justify-center border-b-2 border-primer'>
               <div className='w-[30%] flex justify-center items-center m-2'>
                 <Image
                  src={item.img} 
@@ -90,28 +88,31 @@ const Keranjang = () => {
                  className='size-30 rounded-3xl aspect-square object-cover'
                  alt='Coffee' />
               </div>
-
-              <div className='w-[65%] pt-2 flex flex-col'>
+              
+              <div className='w-[70%] pt-2 flex flex-col'>
                 <button className="absolute right-2 btn btn-square bg-sekunder text-primer border-primer size-8 rounded-md" onClick={()=>removeFromCart(item.id)}><Trash2/></button>
-                <div className="w-full h-[70%] flex flex-col">
+                <div className="w-full flex flex-col">
                   <p className='font-bold text-black'>{item.name}</p>
-                  <p className="text-gray">{item.desc}</p>
-                  <p className="text-gray">{item.option.cup}</p>
-                  <p className="text-gray">{item.option.ice}</p>
-                  <p className="text-gray">{item.option.sugar}</p>
+                  <p className="font-semibold text-black">{item.desc}</p>
+                  {Object.values(item.option).map((data)=>(
+                    <div className="flex justify-between mr-3">
+                      <p className="text-gray-400">{data.label}</p>
+                      <p className="text-gray-400">{data.value}</p>
+                    </div>
+                    
+                  ))}
                 </div>
-                
-                <div className="w-full h-[30%] flex flex-row justify-between items-center">
-                  <div className='w-30 h-9 bg-tersier border-2 border-back rounded-full flex justify-between items-center text-back'>
-                    <div className='btn btn-circle bg-back text-sekunder size-6 ml-1' onClick={() => decreaseQuantity(item.id)}>
+                <div className="w-full flex-2 mt-3 flex flex-row justify-between items-center">
+                  <div className='w-30 h-9 bg-sekunder border-2 border-back rounded-full flex justify-between items-center text-back'>
+                    <div className='btn btn-circle bg-back text-black size-6 ml-1' onClick={() => decreaseQuantity(item.id)}>
                      <Minus strokeWidth={3}/>
                     </div>
-                    <p className="text-black font-bold">{item.quantity}</p>
+                    <p className="text-white font-bold">{item.quantity}</p>
                     <div className='btn btn-circle bg-back size-6 mr-1' onClick={() => increaseQuantity(item.id)}>
                       <Plus color="#2563EB" strokeWidth={3}/>
                     </div>
                   </div>
-                  <p className="mr-5 font-bold text-primer">Rp {formatPrice(item.harga)}</p>
+                  <p className="mr-3 font-bold text-primer">Rp {formatPrice(item.harga * item.quantity)}</p>
                 </div>
               </div>
             </div>
@@ -130,11 +131,11 @@ const Keranjang = () => {
       </div>
       
       {alert && 
-      <div className="toast toast-top toast-center w-90 rounded-full z-50 bg-red-600 text-black">
-        <div className="alert alert-info rounded-full">
-          <span>Nama Harus Diisi</span>
+        <div className="toast toast-top toast-center w-90 rounded-full z-50 bg-red-600 text-black">
+          <div className="alert alert-info rounded-full">
+            <span>Nama Harus Diisi</span>
+          </div>
         </div>
-      </div>
       }
     </div>
   );

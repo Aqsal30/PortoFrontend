@@ -14,7 +14,7 @@ const Header = ({data}) => {
         <div className="h-full bg-white flex text-black flex-col items-center justify-end"
           >
           <p>Selamat Datang</p>
-          <label className="input bg-primer text-white font-bold w-full">
+          <label className="input focus-within:outline-none bg-primer text-white font-bold w-full">
             <Search size={15}/>
             <input type="search" required ref={isRef} placeholder="cari menu disini..." value={cari} onClick={()=>{if(!shrink){setshrink(true)}}} onChange={(e) => setcari(e.target.value)}/>
           </label>
@@ -22,8 +22,8 @@ const Header = ({data}) => {
         {shrink &&
         <div className='absolute bg-white overflow-auto min-h-dvh w-full flex flex-col items-center' onClick={()=>setshrink(false)}>
           {keyword == "" ? (
-          <div className="w-full h-full flex items-center justify-center">
-            <p className="font-bold">Ketik Untuk Mencari Menu</p>
+          <div className="w-full h-dvh text-black flex items-center justify-center">
+            <span className="font-bold">Ketuk Untuk Kembali</span>
           </div>
           ): filteredMenu.length > 0 ?(
           <>
@@ -48,7 +48,7 @@ const Header = ({data}) => {
             ))}
           </>
           ):(
-          <p> Menu Tidak Tersedia</p>)}
+          <p className="text-black font-bold"> Menu Tidak Tersedia</p>)}
         </div>
         }
       </div>
