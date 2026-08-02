@@ -67,7 +67,7 @@ const HistoryModal = ({data, open, close}) => {
             <div className='flex-1 flex flex-col'>
               <p className='ml-2 font-bold text-primer'>{res.nama_menu}</p>
               {Object.values(res.option).map((data)=>(
-                <div className='flex ml-2'>
+                <div key={data.label} className='flex ml-2'>               
                 <p className='mr-2 font-bold text-primer'>{data.label}:</p>
                 <p>{data.value}</p>
                 </div>

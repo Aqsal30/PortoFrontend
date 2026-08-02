@@ -96,7 +96,7 @@ const Keranjang = () => {
                     <p className='font-bold text-black'>{item.name}</p>
                     <p className="font-semibold text-black">{item.desc}</p>
                     {Object.values(item.option).map((data)=>(
-                      <div className="flex justify-between mr-3">
+                      <div key={data.label} className="flex justify-between mr-3">
                         <p className="text-gray-400">{data.label}</p>
                         <p className="text-gray-400">{data.value}</p>
                       </div>

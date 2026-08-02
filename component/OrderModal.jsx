@@ -4,6 +4,7 @@ import { formatPrice } from "@/app/utils/FormatPrice"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
 import { useState } from "react"
 import useModalStore from '../src/app/utils/CartStorage';
+import Image from "next/image";
 const OrderModal = ({ref, data}) => { 
   const [notes, setNotes] = useState("")
   const [qty, setQty] = useState(1)
@@ -22,7 +23,12 @@ const OrderModal = ({ref, data}) => {
     <dialog ref={ref} className="modal">
       <div className="w-full min-h-dvh flex flex-col bg-back text-black">
         <div className='w-full h-60 bg-white'>
-          <img src={data.img_url} className="w-full h-full object-contain"/>
+          <Image
+           src={data.img_url} 
+           alt="menu"
+           width={240}
+           height={240}
+           className="w-full h-full object-contain"/>
           <form method="dialog">
             <button className="btn btn-circle size-10 text-white bg-primer border-1 border-sekunder absolute top-2 left-2"><ArrowLeft/></button>
           </form>
