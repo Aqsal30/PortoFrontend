@@ -44,7 +44,7 @@ const DisplayCard = ({data, index}) => {
                 <p className="text-[10px] font-sans font-semibold ml-2">{data.deskripsi_singkat}</p>
               </div>
               <div className='w-full h-8 flex flex-row rounded-b-md justify-between items-center'>
-                <p className="text-[12px] text-primer font-bold font ml-2">Rp {formatPrice(data.harga)}</p>
+                <p className="text-[12px] text-primer font-bold ml-2">Rp {formatPrice(data.harga)}</p>
                 <button id='AddItem' aria-label='AddItem' className="btn btn-square size-5 mr-2 bg-primer text-white border-sekunder flex justify-center items-center" onClick={(e)=>Pesan(e,data)}> <Plus/> </button>
               </div>
             </div>

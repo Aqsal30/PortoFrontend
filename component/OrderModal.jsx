@@ -38,9 +38,9 @@ const OrderModal = ({ref, data}) => {
             </div>
             
           </div>
-          <div className="w-full flex-6 flex flex-col">
+          <div className="w-full flex-5 gap-4 flex flex-col">
           {data.option.map((option) => (
-            <div className="flex-1 flex flex-col justify-around border-b-2 border-primer" key={option.option_id}>
+            <div className="min-h-25 flex flex-col border-b-2 justify-around border-primer" key={option.option_id}>
               <p className="ml-2 font-bold">{option.label}</p>
               <div className="flex justify-start gap-4">
                 {option.value.map((value) => (
@@ -72,7 +72,7 @@ const OrderModal = ({ref, data}) => {
           ))}
           </div>
 
-          <div className="w-full flex-1 flex flex-col">
+          <div className="w-full flex-2 flex flex-col">
             <div className='w-full flex-1 grid shadow-xl'>
               <p className='mt-2 ml-2 font-bold text-black'>Notes</p>
               <input className='w-[95%] justify-self-center border-2 border-primer rounded-full h-8 pl-5 focus:outline-none' placeholder='Add note' onChange={(e)=> setNotes(e.target.value)}/>
